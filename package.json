@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "echo \"no tests yet\" && exit 0"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -30,3 +31,6 @@
     "typescript": "^5"
   }
 }
+
+
+
