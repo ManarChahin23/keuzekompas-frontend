@@ -1,16 +1,18 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { fetchVkm } from '@/lib/api';
+import { fetchVkm } from '@/app/vkms/lib/api';
 
-type PageProps = { params: { id: string } };
 
-export default async function VkmDetailPage({ params }: PageProps) {
-  const v = await fetchVkm(params.id).catch(() => null);
+type Params = Promise<{ id: string }>;
+
+export default async function VkmDetailPage({ params }: { params: Params }) {
+  const { id } = await params;          
+
+  const v = await fetchVkm(id).catch(() => null);
   if (!v) return notFound();
 
   return (
     <main className="max-w-3xl mx-auto p-6 space-y-6">
-      {/* Header met acties */}
       <div className="flex items-center justify-between gap-3">
         <Link
           href="/vkms"
@@ -20,10 +22,10 @@ export default async function VkmDetailPage({ params }: PageProps) {
         </Link>
 
         <Link
-          href={`/vkms/${params.id}/edit`}
+          href={`/vkms/${id}/edit`}   
           className="inline-flex items-center gap-2 rounded-lg bg-black text-white px-4 py-2 hover:bg-gray-800"
         >
-         Bewerken
+          Bewerken
         </Link>
       </div>
 

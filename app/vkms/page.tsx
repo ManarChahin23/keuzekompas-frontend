@@ -1,38 +1,33 @@
-// app/vkms/page.tsx
-import { fetchVkms } from '@/lib/api';
-import { VkmCard } from '@/components/VkmCard';
+import { fetchVkms } from '@/app/vkms/lib/api';
+import { VkmCard } from '@/app/vkms/components/VkmCard';
 
-type SearchParams = {
+type SearchParams = Promise<{
   name?: string;
   query?: string;
   ec?: string;
   level?: string;
   location?: string;
-};
+}>;
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams?: SearchParams;
+  searchParams: SearchParams;
 }) {
-  const params = searchParams ?? {};
-
+  const params = await searchParams;
   const vkms = await fetchVkms(params);
 
   return (
     <main className="max-w-6xl mx-auto p-6 space-y-6">
-
-    <div className="flex items-center justify-between">
-    <h1 className="text-2xl font-bold">Vrije Keuze Modules</h1>
-    <a
-    href="/vkms/new"
-    className="bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-800 transition"
-    >
-    + Nieuwe module
-    </a>
-    </div>
-
-
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold">Vrije Keuze Modules</h1>
+        <a
+          href="/vkms/new"
+          className="bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-800 transition"
+        >
+          + Nieuwe module
+        </a>
+      </div>
 
       {/* Filters */}
       <form
@@ -43,18 +38,18 @@ export default async function Page({
         <input
           name="name"
           placeholder="Zoek op naam…"
-          defaultValue={params.name ?? ''}
+          defaultValue={params?.name ?? ''}
           className="border rounded-lg px-3 py-2"
         />
         <input
           name="query"
           placeholder="Zoek in beschrijving…"
-          defaultValue={params.query ?? ''}
+          defaultValue={params?.query ?? ''}
           className="border rounded-lg px-3 py-2"
         />
         <select
           name="ec"
-          defaultValue={params.ec ?? ''}
+          defaultValue={params?.ec ?? ''}
           className="border rounded-lg px-3 py-2"
         >
           <option value="">EC</option>
@@ -63,7 +58,7 @@ export default async function Page({
         </select>
         <select
           name="level"
-          defaultValue={params.level ?? ''}
+          defaultValue={params?.level ?? ''}
           className="border rounded-lg px-3 py-2"
         >
           <option value="">Level</option>
@@ -73,7 +68,7 @@ export default async function Page({
         <input
           name="location"
           placeholder="Locatie"
-          defaultValue={params.location ?? ''}
+          defaultValue={params?.location ?? ''}
           className="border rounded-lg px-3 py-2"
         />
         <button

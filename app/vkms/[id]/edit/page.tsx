@@ -1,5 +1,4 @@
-// app/vkms/[id]/edit/page.tsx
-import VkmEditForm from './vkm-edit-form';
+import VkmEditForm from './VkmEditForm';
 
 function apiBase() {
   return (
@@ -16,14 +15,18 @@ async function fetchVkm(id: string) {
   return res.json();
 }
 
-export default async function EditPage({ params }: { params: { id: string } }) {
-  const vkm = await fetchVkm(params.id);
+type Params = Promise<{ id: string }>;
+
+export default async function EditPage({ params }: { params: Params }) {
+  const { id } = await params; // ✅ eerst awaiten
+
+  const vkm = await fetchVkm(id);
 
   return (
     <main className="max-w-xl mx-auto p-6 space-y-4">
       <h1 className="text-2xl font-bold">Module bewerken</h1>
       <VkmEditForm
-        id={params.id}
+        id={id}
         initial={{
           name: vkm.name ?? '',
           ec: vkm.ec ?? 0,

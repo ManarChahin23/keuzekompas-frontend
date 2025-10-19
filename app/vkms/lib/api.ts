@@ -1,5 +1,4 @@
-// lib/api.ts
-import type { VkmApi } from '@/types/vkm';
+import type { VkmApi } from '@/app/vkms/types/vkm';
 
 
 const BASE = process.env.NEXT_PUBLIC_API_BASE!;

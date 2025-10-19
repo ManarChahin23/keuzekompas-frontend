@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { VkmApi } from '@/types/vkm';
+import type { VkmApi } from '@/app/vkms/types/vkm';
 
 export function VkmCard({ vkm }: { vkm: VkmApi }) {
   return (

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateVkm } from '@/lib/api';
-import type { VkmApi } from '@/types/vkm';
+import { updateVkm } from '@/app/vkms/lib/api';
+import type { VkmApi } from '@/app/vkms/types/vkm';
 
 type Level = 'NLQF-5' | 'NLQF-6' | '';
 type Props = {
@@ -26,7 +26,7 @@ export default function VkmEditForm({ id, initial }: Props) {
     learningoutcomes: initial.learningoutcomes ?? '',
   });
 
-  // --- VALIDATIE ---
+  // VALIDATIE
   const [errors, setErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
 
   function validate(s: typeof form) {
@@ -68,7 +68,7 @@ export default function VkmEditForm({ id, initial }: Props) {
       <p className="text-sm text-green-600 mt-1">Looks good!</p>
     );
 
-  // --- SUBMIT ---
+  //SUBMIT
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);

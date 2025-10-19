@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createVkm } from '@/lib/api';
+import { createVkm } from '@/app/vkms/lib/api';
 
 type FormState = {
   code: string;
   name: string;
-  ec: number | '';// empty string zodat input leeg kan zijn
+  ec: number | '';
   level: 'NLQF-5' | 'NLQF-6' | '';
   description: string;
   location: string;
@@ -110,7 +110,6 @@ export default function NewVkmPage() {
       {err && <p className="text-red-600">{err}</p>}
 
       <form onSubmit={submit} className="space-y-4">
-        {/* Code (optioneel) */}
         <div>
           <input
             className={fieldClass('code')}
@@ -121,7 +120,7 @@ export default function NewVkmPage() {
           <Hint name="code" />
         </div>
 
-        {/* Naam */}
+
         <div>
           <input
             className={fieldClass('name')}
@@ -132,7 +131,6 @@ export default function NewVkmPage() {
           <Hint name="name" />
         </div>
 
-        {/* EC + Level */}
         <div className="grid grid-cols-2 gap-3">
           <div>
             <input
@@ -162,7 +160,6 @@ export default function NewVkmPage() {
           </div>
         </div>
 
-        {/* Locatie (optioneel) */}
         <div>
           <input
             className={fieldClass('location')}
@@ -173,7 +170,6 @@ export default function NewVkmPage() {
           <Hint name="location" />
         </div>
 
-        {/* Beschrijving (optioneel) */}
         <div>
           <textarea
             className={fieldClass('description')}
