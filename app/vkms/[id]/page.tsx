@@ -39,10 +39,10 @@ export default async function VkmDetailPage({ params }: { params: Params }) {
 
       {v.description && <p className="leading-7">{v.description}</p>}
 
-      {v.learningoutcomes && (
+      {v.learningOutcomes && (
         <section className="space-y-2">
           <h2 className="font-semibold">Learning outcomes</h2>
-          <p className="leading-7">{v.learningoutcomes}</p>
+          <p className="leading-7">{v.learningOutcomes}</p>
         </section>
       )}
     </main>

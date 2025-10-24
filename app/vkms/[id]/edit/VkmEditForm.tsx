@@ -8,7 +8,7 @@ import type { VkmApi } from '@/app/vkms/types/vkm';
 type Level = 'NLQF-5' | 'NLQF-6' | '';
 type Props = {
   id: string;
-  initial: Pick<VkmApi, 'name' | 'ec' | 'level' | 'location' | 'description' | 'learningoutcomes'>;
+  initial: Pick<VkmApi, 'name' | 'ec' | 'level' | 'location' | 'description' | 'learningOutcomes'>;
 };
 
 export default function VkmEditForm({ id, initial }: Props) {
@@ -23,7 +23,7 @@ export default function VkmEditForm({ id, initial }: Props) {
     level: (initial.level ?? '') as Level,
     location: initial.location ?? '',
     description: initial.description ?? '',
-    learningoutcomes: initial.learningoutcomes ?? '',
+    learningOutcomes: initial.learningOutcomes ?? '',
   });
 
   // VALIDATIE
@@ -49,7 +49,7 @@ export default function VkmEditForm({ id, initial }: Props) {
     // Optioneel: lengte-limieten
     if (s.location && s.location.length > 120) e.location = 'Max 120 tekens.';
     if (s.description && s.description.length > 2000) e.description = 'Max 2000 tekens.';
-    if (s.learningoutcomes && s.learningoutcomes.length > 5000) e.learningoutcomes = 'Max 5000 tekens.';
+    if (s.learningOutcomes && s.learningOutcomes.length > 5000) e.learningOutcomes = 'Max 5000 tekens.';
 
     return e;
   }
@@ -84,7 +84,7 @@ export default function VkmEditForm({ id, initial }: Props) {
       level: form.level as 'NLQF-5' | 'NLQF-6',
       location: form.location || undefined,
       description: form.description || undefined,
-      learningoutcomes: form.learningoutcomes || undefined,
+      learningOutcomes: form.learningOutcomes || undefined,
     };
 
     setPending(true);
@@ -176,14 +176,14 @@ export default function VkmEditForm({ id, initial }: Props) {
       {/* Learning outcomes */}
       <div>
         <textarea
-          name="learningoutcomes"
-          className={fieldClass('learningoutcomes')}
+          name="learningOutcomes"
+          className={fieldClass('learningOutcomes')}
           placeholder="Learning outcomes"
           rows={4}
-          value={form.learningoutcomes}
-          onChange={(e) => setForm({ ...form, learningoutcomes: e.target.value })}
+          value={form.learningOutcomes}
+          onChange={(e) => setForm({ ...form, learningOutcomes: e.target.value })}
         />
-        <Hint name="learningoutcomes" />
+        <Hint name="learningOutcomes" />
       </div>
 
       <div className="flex gap-2">

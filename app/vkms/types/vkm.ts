@@ -6,7 +6,7 @@ export type VkmApi = {
   ec?: number | null;
   level?: 'NLQF-5' | 'NLQF-6' | null;
   location?: string | null; 
-  learningoutcomes?: string | null;
+  learningOutcomes?: string | null;
 };
 
 
