@@ -110,7 +110,7 @@ export default function NewVkmPage() {
       {err && <p className="text-red-600">{err}</p>}
 
       <form onSubmit={submit} className="space-y-4">
-        <div>
+        <div className="d-none">
           <input
             className={fieldClass('code')}
             placeholder="Code (optioneel)"
